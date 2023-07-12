@@ -75,23 +75,19 @@
 #include <xc.h>
 #include <pic18f4550.h>
 
-unsigned char leds;
-
-void InitPorts(void);
+unsigned char leds;     //Almacena el estado de los LEDs
 
 void main(void) {
-    InitPorts();
-    leds = 0x0D;
+    
+    ADCON1bits.PCFG = 0xF; //Se configura el pin como salida digital 
+    TRISB = 0;             //Se asigna el puerto B como salida
+    leds = 0x0D;           //Estado inicial de los LEDs
+    LATB = leds;
+    
     while (1) {
         __delay_ms(500);
         LATB = leds;
         leds = (leds << 1) | (leds >> 7);
     }
     return;
-}
-
-void InitPorts(void) {
-    ADCON1bits.PCFG = 0xF;
-    LATB = 0;
-    TRISB = 0;
 }
