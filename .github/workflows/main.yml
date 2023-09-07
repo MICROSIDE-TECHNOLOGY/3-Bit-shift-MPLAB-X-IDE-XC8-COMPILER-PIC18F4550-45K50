@@ -1,0 +1,31 @@
+on: [push]
+
+jobs:
+  gist-sync:
+    name: gist-sync
+    runs-on: ubuntu-latest
+    steps:
+    #PIC18F4550
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: vhperaltaj/gist-sync-action@v1.0.0
+        id: PIC18F4550
+        with:
+          auth: ${{ secrets.GIST_TOKEN }}
+          gist_url: https://gist.github.com/microside-mx/d203f26aecef8210befc27b12464d61a
+          gist_title: 3-CorrimientoLed-MPLAB-4550.c
+          gist_description: Prácticas MPLABX
+          github_file: Proyecto/PIC18F4550/3_Bit_Shift.X/main.c
+          file_encoding: ISO-8859-1
+    #PIC18F45K50
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: vhperaltaj/gist-sync-action@v1.0.0
+        id: PIC18F45K50
+        with:
+          auth: ${{ secrets.GIST_TOKEN }}
+          gist_url: https://gist.github.com/microside-mx/2acc8f213c80bbf6df30692865ce69f4
+          gist_title: 3-CorrimientoBits-MPLAB.c
+          gist_description: Prácticas MPLABX
+          github_file: Proyecto/PIC18F45K50/3_CorrimientoBits.X/main.c
+          file_encoding: ISO-8859-1
